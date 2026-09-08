@@ -1,0 +1,16 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/AgroRegulate.API/index.8bgnq7tvol.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8bgnq7tvol"},{"Name":"integrity","Value":"sha256-VBhwZndSF/hsQM\u002BUBELkQYOxDbCwuG6nGIEhOtpAXW4="},{"Name":"label","Value":"_content/AgroRegulate.API/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"12080"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022VBhwZndSF/hsQM\u002BUBELkQYOxDbCwuG6nGIEhOtpAXW4=\u0022"},{"Name":"Last-Modified","Value":"Tue, 18 Aug 2026 13:58:10 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/AgroRegulate.API/index.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-VBhwZndSF/hsQM\u002BUBELkQYOxDbCwuG6nGIEhOtpAXW4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"12080"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022VBhwZndSF/hsQM\u002BUBELkQYOxDbCwuG6nGIEhOtpAXW4=\u0022"},{"Name":"Last-Modified","Value":"Tue, 18 Aug 2026 13:58:10 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

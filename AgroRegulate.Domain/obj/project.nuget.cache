@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Lftogi2tH/Q=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sule\\Downloads\\AgroRegulate-main\\AgroRegulate-main\\AgroRegulate.Domain\\AgroRegulate.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sule\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.30\\microsoft.netcore.app.ref.8.0.30.nupkg.sha512",
+    "C:\\Users\\Sule\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.30\\microsoft.windowsdesktop.app.ref.8.0.30.nupkg.sha512",
+    "C:\\Users\\Sule\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.30\\microsoft.aspnetcore.app.ref.8.0.30.nupkg.sha512"
+  ],
+  "logs": []
+}

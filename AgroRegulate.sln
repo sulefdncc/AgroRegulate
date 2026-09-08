@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroRegulate.Domain", "AgroRegulate.Domain\AgroRegulate.Domain.csproj", "{10E40DAB-219B-4378-80B9-1A92EFF4ED23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroRegulate.Application", "AgroRegulate.Application\AgroRegulate.Application.csproj", "{AF747FF4-8E02-4F87-8DE5-312F94E26434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroRegulate.Infrastructure", "AgroRegulate.Infrastructure\AgroRegulate.Infrastructure.csproj", "{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroRegulate.API", "AgroRegulate.API\AgroRegulate.API.csproj", "{8A310A2E-C49A-4005-940C-1AF719E82E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroRegulate.BackgroundWorker", "AgroRegulate.BackgroundWorker\AgroRegulate.BackgroundWorker.csproj", "{416C09ED-83C5-4988-8929-97A8C76ACBCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		ARCHITECTURE_FLOW.md = ARCHITECTURE_FLOW.md
+		DATABASE_CONFIG.md = DATABASE_CONFIG.md
+		DATABASE_SCHEMA.md = DATABASE_SCHEMA.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10E40DAB-219B-4378-80B9-1A92EFF4ED23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E40DAB-219B-4378-80B9-1A92EFF4ED23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E40DAB-219B-4378-80B9-1A92EFF4ED23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E40DAB-219B-4378-80B9-1A92EFF4ED23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF747FF4-8E02-4F87-8DE5-312F94E26434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF747FF4-8E02-4F87-8DE5-312F94E26434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF747FF4-8E02-4F87-8DE5-312F94E26434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF747FF4-8E02-4F87-8DE5-312F94E26434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A310A2E-C49A-4005-940C-1AF719E82E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A310A2E-C49A-4005-940C-1AF719E82E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A310A2E-C49A-4005-940C-1AF719E82E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A310A2E-C49A-4005-940C-1AF719E82E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{416C09ED-83C5-4988-8929-97A8C76ACBCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416C09ED-83C5-4988-8929-97A8C76ACBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416C09ED-83C5-4988-8929-97A8C76ACBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416C09ED-83C5-4988-8929-97A8C76ACBCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {500009E3-0F76-4C60-9A8D-5D517942C3DB}
+	EndGlobalSection
+EndGlobal

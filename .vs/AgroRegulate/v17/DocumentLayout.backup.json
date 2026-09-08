@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|c:\\users\\sule\\source\\repos\\agroregulate\\agroregulate.api\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|solutionrelative:agroregulate.api\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|c:\\users\\sule\\source\\repos\\agroregulate\\agroregulate.api\\controllers\\allocationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|solutionrelative:agroregulate.api\\controllers\\allocationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|c:\\users\\sule\\source\\repos\\agroregulate\\agroregulate.api\\agroregulate.api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|solutionrelative:agroregulate.api\\agroregulate.api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|c:\\users\\sule\\source\\repos\\agroregulate\\agroregulate.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8A310A2E-C49A-4005-940C-1AF719E82E94}|AgroRegulate.API\\AgroRegulate.API.csproj|solutionrelative:agroregulate.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}|AgroRegulate.Infrastructure\\AgroRegulate.Infrastructure.csproj|c:\\users\\sule\\source\\repos\\agroregulate\\agroregulate.infrastructure\\migrations\\20260818120349_addsectortypetofactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DFC946C-88F0-4FD1-95A2-6938B8ACE1FD}|AgroRegulate.Infrastructure\\AgroRegulate.Infrastructure.csproj|solutionrelative:agroregulate.infrastructure\\migrations\\20260818120349_addsectortypetofactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AllocationsController.cs",
+              "DocumentMoniker": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\Controllers\\AllocationsController.cs",
+              "RelativeDocumentMoniker": "AgroRegulate.API\\Controllers\\AllocationsController.cs",
+              "ToolTip": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\Controllers\\AllocationsController.cs",
+              "RelativeToolTip": "AgroRegulate.API\\Controllers\\AllocationsController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAYwHgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T12:34:55.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "AgroRegulate.API\\wwwroot\\index.html",
+              "ToolTip": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\wwwroot\\index.html",
+              "RelativeToolTip": "AgroRegulate.API\\wwwroot\\index.html",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAOYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-08-18T12:15:04.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AgroRegulate.API",
+              "DocumentMoniker": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\AgroRegulate.API.csproj",
+              "RelativeDocumentMoniker": "AgroRegulate.API\\AgroRegulate.API.csproj",
+              "ToolTip": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\AgroRegulate.API.csproj",
+              "RelativeToolTip": "AgroRegulate.API\\AgroRegulate.API.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-18T12:06:34.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20260818120349_AddSectorTypeToFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.Infrastructure\\Migrations\\20260818120349_AddSectorTypeToFactory.cs",
+              "RelativeDocumentMoniker": "AgroRegulate.Infrastructure\\Migrations\\20260818120349_AddSectorTypeToFactory.cs",
+              "ToolTip": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.Infrastructure\\Migrations\\20260818120349_AddSectorTypeToFactory.cs",
+              "RelativeToolTip": "AgroRegulate.Infrastructure\\Migrations\\20260818120349_AddSectorTypeToFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T12:03:49.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\appsettings.json",
+              "RelativeDocumentMoniker": "AgroRegulate.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\Sule\\source\\repos\\AgroRegulate\\AgroRegulate.API\\appsettings.json",
+              "RelativeToolTip": "AgroRegulate.API\\appsettings.json",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwBcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-18T12:01:30.866Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

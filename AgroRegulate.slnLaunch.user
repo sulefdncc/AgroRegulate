@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Yeni Profil",
+    "Projects": [
+      {
+        "Path": "AgroRegulate.API\\AgroRegulate.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AgroRegulate.BackgroundWorker\\AgroRegulate.BackgroundWorker.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

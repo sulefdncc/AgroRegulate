@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroRegulate - Tahsis & Kota Yönetim Sistemi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #2e7d32 !important;
+        }
+
+        .card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .btn-custom {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+            .btn-custom:hover {
+                background-color: #1b5e20;
+                color: white;
+            }
+
+        .nav-pills .nav-link.active {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #2e7d32;
+            font-weight: 600;
+            border-bottom: 3px solid #2e7d32;
+        }
+
+        .nav-tabs .nav-link {
+            color: #6c757d;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-wheat-awn me-2"></i>AgroRegulate Portal</a>
+            <div class="d-flex align-items-center">
+                <span id="userInfo" class="me-3 fw-semibold text-muted d-none"></span>
+                <button id="logoutBtn" class="btn btn-outline-danger btn-sm d-none" onclick="logout()">Çıkış Yap</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+
+        <!-- ================= GİRİŞ EKRANI ================= -->
+        <div id="loginSection" class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm">
+                    <ul class="nav nav-pills nav-fill mb-3">
+                        <li class="nav-item">
+                            <button type="button" class="nav-link active" id="tabLogin" onclick="showAuthForm('login')">Giriş Yap</button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="nav-link" id="tabRegister" onclick="showAuthForm('register')"><i class="fa-solid fa-user-plus me-1"></i>Yeni Kimlik</button>
+                        </li>
+                    </ul>
+
+                    <!-- Giriş Formu -->
+                    <div id="loginForm">
+                        <h4 class="text-center mb-3 fw-bold text-success"><i class="fa-solid fa-lock me-2"></i>Sistem Girişi</h4>
+                        <div class="mb-3">
+                            <label class="form-label">Kullanıcı Adı <span class="text-muted small">(Admin: admin | Firma: VKN)</span></label>
+                            <input type="text" id="username" class="form-control" placeholder="Örn: admin veya 1234567890">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Şifre</label>
+                            <input type="password" id="password" class="form-control" placeholder="Şifre">
+                        </div>
+                        <button type="button" class="btn btn-custom w-100" onclick="login()"><i class="fa-solid fa-right-to-bracket me-1"></i> Giriş Yap</button>
+                        <div id="loginAlert" class="alert alert-danger mt-3 d-none"></div>
+                    </div>
+
+                    <!-- Yeni Kimlik (Şirket Kaydı) Formu -->
+                    <div id="registerForm" class="d-none">
+                        <h4 class="text-center mb-3 fw-bold text-success"><i class="fa-solid fa-building-circle-check me-2"></i>Yeni Kimlik (Şirket Kaydı)</h4>
+                        <p class="text-center text-muted small mb-3">Kaydınız oluşturulduktan sonra yönetici onayına sunulur. Onaylanmadan giriş yapılamaz.</p>
+                        <div class="mb-3">
+                            <label class="form-label">Şirket Adı</label>
+                            <input type="text" id="regCompanyName" class="form-control" placeholder="Örn: Ege Un Sanayi A.Ş.">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Şirket Adresi</label>
+                            <input type="text" id="regAddress" class="form-control" placeholder="Örn: İzmir OSB, 2. Cadde No:10">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Vergi Kimlik No (VKN)</label>
+                            <input type="text" id="regTaxNumber" class="form-control" placeholder="Örn: 1234567890">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Şifre</label>
+                            <input type="password" id="regPassword" class="form-control" placeholder="Şifre">
+                        </div>
+                        <button type="button" class="btn btn-custom w-100" onclick="register()"><i class="fa-solid fa-paper-plane me-1"></i> Kaydı Gönder (Onay Bekler)</button>
+                        <div id="registerAlert" class="alert mt-3 d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= YÖNETİCİ PANELİ ================= -->
+        <div id="adminPanel" class="d-none">
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item"><button type="button" class="nav-link active" onclick="showAdminTab('companies')"><i class="fa-solid fa-building-shield me-1"></i>Şirket Onayları</button></li>
+                <li class="nav-item"><button type="button" class="nav-link" onclick="showAdminTab('stocks')"><i class="fa-solid fa-warehouse me-1"></i>Depo Stokları</button></li>
+                <li class="nav-item"><button type="button" class="nav-link" onclick="showAdminTab('requests')"><i class="fa-solid fa-clipboard-check me-1"></i>Stok İstekleri</button></li>
+            </ul>
+
+            <div id="adminCompaniesTab">
+                <div class="card p-4">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-building-shield text-success me-2"></i>Şirket Onayları</h5>
+                    <p class="text-muted small">Kayıt olan firmaların vergi kimlik ve adres bilgilerini kontrol edip onaylayabilir veya reddedebilirsiniz.</p>
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr><th>Şirket Adı</th><th>Adres</th><th>VKN</th><th>İşlem</th></tr>
+                        </thead>
+                        <tbody id="adminCompaniesTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="adminStocksTab" class="d-none">
+                <div class="card p-4">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-warehouse text-success me-2"></i>Depo Stokları</h5>
+                    <p class="text-muted small">Depo mevcudunun ve envanter durumunun anlık görünümü.</p>
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr><th>Ürün</th><th>Mevcut Stok (Ton)</th><th>Son Güncelleme</th></tr>
+                        </thead>
+                        <tbody id="adminStocksTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="adminRequestsTab" class="d-none">
+                <div class="card p-4">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-clipboard-check text-success me-2"></i>Atılan Stok İstekleri</h5>
+                    <p class="text-muted small">Şirketlerden gelen ürün taleplerinin merkezi takibi ve yönetimi.</p>
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr><th>Tarih</th><th>Firma</th><th>Ürün</th><th>Miktar (Ton)</th><th>İşlem</th></tr>
+                        </thead>
+                        <tbody id="adminRequestsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ŞİRKET (FABRİKA) PANELİ ================= -->
+        <div id="factoryPanel" class="d-none">
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item"><button type="button" class="nav-link active" onclick="showFactoryTab('requests')"><i class="fa-solid fa-file-signature me-1"></i>İstek / Talep</button></li>
+                <li class="nav-item"><button type="button" class="nav-link" onclick="showFactoryTab('profile')"><i class="fa-solid fa-address-card me-1"></i>Profilim</button></li>
+            </ul>
+
+            <div id="factoryRequestsTab" class="row">
+                <div class="col-md-7 mb-4">
+                    <div class="card p-4 mb-4">
+                        <h6 class="fw-bold text-dark mb-3"><i class="fa-solid fa-file-signature me-2"></i>Yeni Stok İsteği Oluştur</h6>
+                        <div class="mb-3">
+                            <label class="form-label small">İstenen Ürün</label>
+                            <select id="requestProduct" class="form-select" onchange="showSelectedStock()"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small">Talep Edilebilir Stok <span class="text-muted">(Depodaki anlık miktar)</span></label>
+                            <div class="alert alert-info py-2 mb-0">
+                                <i class="fa-solid fa-boxes-stacked me-1"></i>
+                                <span class="fw-bold" id="availableStockText">-</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small">İstenen Miktar (Ton)</label>
+                            <input type="number" id="requestTons" class="form-control" placeholder="Örn: 250">
+                        </div>
+                        <button type="button" class="btn btn-custom" onclick="sendAllocationRequest()">
+                            <i class="fa-solid fa-paper-plane me-1"></i> İsteği Onaya Gönder
+                        </button>
+                        <div id="requestAlert" class="alert mt-3 d-none"></div>
+                    </div>
+
+                    <div class="card p-4 border-primary shadow-sm">
+                        <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-list-check me-2"></i>Geçmiş Taleplerim ve Durumları</h6>
+                        <table class="table table-sm table-hover align-middle small">
+                            <thead><tr><th>Tarih</th><th>Ürün</th><th>Miktar</th><th>Durum</th></tr></thead>
+                            <tbody id="myRequestsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-5 mb-4">
+                    <div class="card p-4 border-success shadow-sm">
+                        <h5 class="fw-bold text-dark"><i class="fa-solid fa-chart-pie text-success me-2"></i>Yıllık Kota Durumu</h5>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span>Kalan Kota</span>
+                                <span class="fw-bold" id="quotaText">-</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-success" id="quotaBar" style="width: 100%; transition: width 0.5s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="factoryProfileTab" class="d-none">
+                <div class="card p-4">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-address-card text-success me-2"></i>Şirket Profilim</h5>
+                    <table class="table">
+                        <tbody id="profileTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let token = localStorage.getItem('jwt_token') || '';
+        let role = localStorage.getItem('role') || '';
+        let factoryId = localStorage.getItem('factory_id') || '';
+        let stocks = [];
+
+        const PRODUCT_NAMES = { 0: 'Mısır', 1: 'Buğday', 2: 'Şeker Pancarı', 3: 'Arpa' };
+        const STATUS_NAMES = { 1: 'Beklemede', 2: 'Onaylandı', 3: 'Reddedildi' };
+
+        if (token) renderDashboard();
+
+        function showAuthForm(which) {
+            document.getElementById('loginForm').classList.toggle('d-none', which !== 'login');
+            document.getElementById('registerForm').classList.toggle('d-none', which !== 'register');
+            document.getElementById('tabLogin').classList.toggle('active', which === 'login');
+            document.getElementById('tabRegister').classList.toggle('active', which === 'register');
+        }
+
+        // ---- Yeni Kimlik: Şirket Kaydı ----
+        async function register() {
+            const alertBox = document.getElementById('registerAlert');
+            const body = {
+                companyName: document.getElementById('regCompanyName').value,
+                address: document.getElementById('regAddress').value,
+                taxNumber: document.getElementById('regTaxNumber').value,
+                password: document.getElementById('regPassword').value
+            };
+            try {
+                const res = await fetch('/api/Auth/register', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const data = await res.json();
+                alertBox.className = 'alert mt-3 ' + (res.ok ? 'alert-success' : 'alert-danger');
+                alertBox.innerHTML = data.message || 'İşlem tamamlandı.';
+                alertBox.classList.remove('d-none');
+                if (res.ok) {
+                    ['regCompanyName', 'regAddress', 'regTaxNumber', 'regPassword'].forEach(id => document.getElementById(id).value = '');
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        // ---- Giriş ----
+        async function login() {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            try {
+                const res = await fetch('/api/Auth/login', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: u, password: p })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    token = data.token; role = data.role;
+                    factoryId = data.factoryId || '';
+                    localStorage.setItem('jwt_token', token);
+                    localStorage.setItem('role', role);
+                    localStorage.setItem('factory_id', factoryId);
+                    renderDashboard();
+                } else {
+                    const alertBox = document.getElementById('loginAlert');
+                    alertBox.textContent = data.message || 'Hatalı giriş!';
+                    alertBox.classList.remove('d-none');
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        function renderDashboard() {
+            document.getElementById('loginSection').classList.add('d-none');
+            document.getElementById('logoutBtn').classList.remove('d-none');
+            document.getElementById('userInfo').textContent = role === 'Admin' ? 'Oturum: TMO Yöneticisi' : 'Oturum: Firma Paneli';
+            document.getElementById('userInfo').classList.remove('d-none');
+
+            if (role === 'Admin') {
+                document.getElementById('adminPanel').classList.remove('d-none');
+                showAdminTab('companies');
+                loadPendingCompanies();
+                loadWarehouseStocks();
+                loadPendingRequests();
+            } else {
+                document.getElementById('factoryPanel').classList.remove('d-none');
+                showFactoryTab('requests');
+                loadMyRequests();
+                loadProfile();
+                loadWarehouseStocks().then(populateProductSelect);
+            }
+        }
+
+        function logout() { localStorage.clear(); location.reload(); }
+
+        // ---- Yönetici sekmeleri ----
+        function showAdminTab(tab) {
+            document.getElementById('adminCompaniesTab').classList.toggle('d-none', tab !== 'companies');
+            document.getElementById('adminStocksTab').classList.toggle('d-none', tab !== 'stocks');
+            document.getElementById('adminRequestsTab').classList.toggle('d-none', tab !== 'requests');
+            document.querySelectorAll('#adminPanel .nav-link').forEach(btn => {
+                const target = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                btn.classList.toggle('active', target === tab);
+            });
+        }
+
+        async function loadPendingCompanies() {
+            try {
+                const res = await fetch('/api/Admin/companies/pending', { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return;
+                const data = await res.json();
+                const tbody = document.getElementById('adminCompaniesTable');
+                tbody.innerHTML = '';
+                if (data.length === 0) { tbody.innerHTML = '<tr><td colspan="4" class="text-center">Onay bekleyen şirket yok.</td></tr>'; return; }
+                data.forEach(c => {
+                    tbody.innerHTML += `<tr>
+                        <td class="fw-bold">${c.name}</td>
+                        <td class="small">${c.address}</td>
+                        <td>${c.taxNumber}</td>
+                        <td>
+                            <button class="btn btn-success btn-sm me-1" onclick="approveCompany('${c.id}')">Onayla</button>
+                            <button class="btn btn-danger btn-sm" onclick="rejectCompany('${c.id}')">Reddet</button>
+                        </td></tr>`;
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function approveCompany(id) {
+            await fetch(`/api/Admin/companies/${id}/approve`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
+            loadPendingCompanies();
+        }
+
+        async function rejectCompany(id) {
+            await fetch(`/api/Admin/companies/${id}/reject`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
+            loadPendingCompanies();
+        }
+
+        // ---- Depo Stokları ----
+        async function loadWarehouseStocks() {
+            try {
+                const res = await fetch('/api/Warehouse/stocks', { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return [];
+                stocks = await res.json();
+                const tbody = document.getElementById('adminStocksTable');
+                tbody.innerHTML = '';
+                if (stocks.length === 0) { tbody.innerHTML = '<tr><td colspan="3" class="text-center">Stok kaydı yok.</td></tr>'; return stocks; }
+                stocks.forEach(s => {
+                    const date = new Date(s.updatedAt).toLocaleString('tr-TR');
+                    tbody.innerHTML += `<tr><td class="fw-bold">${PRODUCT_NAMES[s.productType] || s.productName}</td><td class="text-primary fw-bold">${s.availableTons} Ton</td><td class="small text-muted">${date}</td></tr>`;
+                });
+                return stocks;
+            } catch (e) { console.error(e); return []; }
+        }
+
+        async function loadPendingRequests() {
+            try {
+                const res = await fetch('/api/Allocations/pending-requests', { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return;
+                const data = await res.json();
+                const tbody = document.getElementById('adminRequestsTable');
+                tbody.innerHTML = '';
+                if (data.length === 0) { tbody.innerHTML = '<tr><td colspan="5" class="text-center">Bekleyen istek yok.</td></tr>'; return; }
+                data.forEach(req => {
+                    const dateStr = new Date(req.requestDate).toLocaleString('tr-TR');
+                    tbody.innerHTML += `<tr><td>${dateStr}</td><td class="fw-bold">${req.factoryName}</td>
+                        <td>${PRODUCT_NAMES[req.productType] || req.productName}</td>
+                        <td class="text-primary fw-bold">${req.requestedTons} Ton</td>
+                        <td>
+                            <button class="btn btn-success btn-sm me-1" onclick="updateStatus('${req.id}', 2)">Onayla</button>
+                            <button class="btn btn-danger btn-sm" onclick="updateStatus('${req.id}', 3)">Reddet</button>
+                        </td></tr>`;
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function updateStatus(id, newStatus) {
+            await fetch(`/api/Allocations/update-status/${id}`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ status: newStatus })
+            });
+            loadPendingRequests();
+        }
+
+        // ---- Şirket sekmeleri ----
+        function showFactoryTab(tab) {
+            document.getElementById('factoryRequestsTab').classList.toggle('d-none', tab !== 'requests');
+            document.getElementById('factoryProfileTab').classList.toggle('d-none', tab !== 'profile');
+            const btns = document.querySelectorAll('#factoryPanel .nav-link');
+            btns[0].classList.toggle('active', tab === 'requests');
+            btns[1].classList.toggle('active', tab === 'profile');
+        }
+
+        function populateProductSelect() {
+            const sel = document.getElementById('requestProduct');
+            sel.innerHTML = '';
+            if (!stocks || stocks.length === 0) {
+                const opt = document.createElement('option');
+                opt.textContent = 'Stok bulunamadı';
+                sel.appendChild(opt);
+                return;
+            }
+            stocks.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.productType;
+                opt.textContent = `${PRODUCT_NAMES[s.productType] || s.productName} (${s.availableTons} Ton mevcut)`;
+                sel.appendChild(opt);
+            });
+            showSelectedStock();
+        }
+
+        function showSelectedStock() {
+            const idx = parseInt(document.getElementById('requestProduct').value || '0', 10);
+            const stock = stocks.find(s => s.productType === idx);
+            document.getElementById('availableStockText').textContent = stock ? `${stock.availableTons} Ton` : '-';
+        }
+
+        async function sendAllocationRequest() {
+            const productType = parseInt(document.getElementById('requestProduct').value || '0', 10);
+            const tons = parseFloat(document.getElementById('requestTons').value);
+            const alertBox = document.getElementById('requestAlert');
+            const stock = stocks.find(s => s.productType === productType);
+
+            if (!tons || tons <= 0) {
+                alertBox.className = 'alert mt-3 alert-danger';
+                alertBox.textContent = 'Geçerli bir miktar girin.';
+                alertBox.classList.remove('d-none');
+                return;
+            }
+            if (stock && tons > stock.availableTons) {
+                alertBox.className = 'alert mt-3 alert-danger';
+                alertBox.textContent = `Depoda yeterli stok yok! Mevcut: ${stock.availableTons} Ton`;
+                alertBox.classList.remove('d-none');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/Allocations/request-allocation', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify({ productType: productType, requestedTons: tons })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    alertBox.className = 'alert mt-3 alert-success';
+                    alertBox.innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + (data.message || 'Başvuru alındı.');
+                    document.getElementById('requestTons').value = '';
+                    setTimeout(() => loadMyRequests(), 500);
+                } else {
+                    alertBox.className = 'alert mt-3 alert-danger';
+                    alertBox.textContent = data.message || 'Hata oluştu.';
+                }
+                alertBox.classList.remove('d-none');
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadQuota() {
+            try {
+                const res = await fetch('/api/Allocations/quota', { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return;
+                const data = await res.json();
+                document.getElementById('quotaText').textContent = `${data.remaining} / ${data.total} Ton`;
+                const percent = data.total > 0 ? (data.remaining / data.total) * 100 : 0;
+                const bar = document.getElementById('quotaBar');
+                bar.style.width = percent + '%';
+                if (percent <= 25) bar.className = "progress-bar bg-danger";
+                else if (percent <= 50) bar.className = "progress-bar bg-warning";
+                else bar.className = "progress-bar bg-success";
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadMyRequests() {
+            loadQuota();
+            if (!factoryId) return;
+            try {
+                const res = await fetch(`/api/Allocations/my-requests/${factoryId}`, { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return;
+                const data = await res.json();
+                const tbody = document.getElementById('myRequestsTable');
+                tbody.innerHTML = '';
+                if (data.length === 0) { tbody.innerHTML = '<tr><td colspan="4" class="text-center">Henüz talep yok.</td></tr>'; return; }
+                data.forEach(req => {
+                    const badge = STATUS_NAMES[req.status]
+                        ? `<span class="badge ${req.status === 1 ? 'bg-warning text-dark' : req.status === 2 ? 'bg-success' : 'bg-danger'}">${STATUS_NAMES[req.status]}</span>`
+                        : `<span class="badge bg-secondary">Bilinmiyor</span>`;
+                    const dateStr = new Date(req.requestDate).toLocaleString('tr-TR');
+                    tbody.innerHTML += `<tr><td>${dateStr}</td><td class="fw-bold">${PRODUCT_NAMES[req.productType] || req.productName}</td><td>${req.requestedTons} Ton</td><td>${badge}</td></tr>`;
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadProfile() {
+            try {
+                const res = await fetch('/api/Companies/profile', { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return;
+                const p = await res.json();
+                document.getElementById('profileTable').innerHTML = `
+                    <tr><th class="w-25">Şirket Adı</th><td class="fw-bold">${p.name}</td></tr>
+                    <tr><th>Adres</th><td>${p.address}</td></tr>
+                    <tr><th>Vergi Kimlik No (VKN)</th><td>${p.taxNumber}</td></tr>
+                    <tr><th>Hesap Durumu</th><td><span class="badge bg-success">Onaylı</span></td></tr>`;
+            } catch (e) { console.error(e); }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

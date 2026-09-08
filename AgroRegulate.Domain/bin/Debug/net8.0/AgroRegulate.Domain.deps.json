@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AgroRegulate.Domain/1.0.0": {
+        "runtime": {
+          "AgroRegulate.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AgroRegulate.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

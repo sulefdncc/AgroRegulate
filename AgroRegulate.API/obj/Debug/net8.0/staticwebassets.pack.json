@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/emincosar/Desktop/sule/AgroRegulate.API/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.AgroRegulate.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.AgroRegulate.API.props",
+      "PackagePath": "build\\AgroRegulate.API.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.AgroRegulate.API.props",
+      "PackagePath": "buildMultiTargeting\\AgroRegulate.API.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.AgroRegulate.API.props",
+      "PackagePath": "buildTransitive\\AgroRegulate.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
